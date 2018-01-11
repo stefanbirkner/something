@@ -19,7 +19,10 @@ the daemon by
 
 The daemon writes its message to the specified log file. It writes the following events:
 
-- Monitor has started
+- Monitor has started: `DEBUG Monitor started`
+- Server is healthy (it returns 200): `INFO Server is healthy`
+- Server returns wrong status code: `ERROR Server returned status code 500`
+- Cannot connect to server: `ERROR Failed to connect to server`
 
 ## Development Guide
 

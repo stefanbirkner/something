@@ -1,3 +1,7 @@
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,6 +18,7 @@ import static java.util.concurrent.Executors.newSingleThreadExecutor;
 
 public class Monitor {
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    private final OkHttpClient client = new OkHttpClient();
     private final Path log;
 
     public static void main(String... args) throws Exception {
@@ -41,7 +46,21 @@ public class Monitor {
     }
 
     private void monitorServer() {
-        log("ERROR Failed to connect to server");
+        try {
+            Request request = new Request.Builder()
+                .url("http://localhost:12345")
+                .build();
+
+            Response response = client.newCall(request).execute();
+            int code = response.code();
+            if (code == 200) {
+                log("INFO Server is healthy");
+            } else {
+                log("ERROR Server returned status code " + code);
+            }
+        } catch (Exception e) {
+            log("ERROR Failed to connect to server");
+        }
     }
 
     private void log(String message) {
