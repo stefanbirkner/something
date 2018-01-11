@@ -15,7 +15,7 @@ Build the daemon by running
 This will create an executable JAR `target/monitor-0.0.0-SNAPSHOT.jar`. Now you can run
 the daemon by
 
-    java -jar target/monitor-0.0.0-SNAPSHOT.jar <path/to/log/file>
+    java -cp "target/monitor-0.0.0-SNAPSHOT.jar:okhttp-3.9.1.jar:okio-1.13.0.jar" Monitor <path/to/log/file>
 
 The daemon writes its message to the specified log file. It writes the following events:
 
