@@ -9,10 +9,10 @@ Build the daemon by running
 
     ./mvnw verify
 
-This will create an executable JAR `target/...`. Now you can run
+This will create an executable JAR `target/monitor-0.0.0-SNAPSHOT.jar`. Now you can run
 the daemon by
 
-    `java -jar target/...
+    `java -jar target/monitor-0.0.0-SNAPSHOT.jar
 
 The daemon writes its message to a file `daemon.log` at your current directory.
 
