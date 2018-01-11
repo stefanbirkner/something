@@ -24,6 +24,14 @@ The log file must already exist. The daemon writes its message to the specified 
 - Server returns wrong status code: `ERROR Server returned status code 500`
 - Cannot connect to server: `ERROR Failed to connect to server`
 
+### TODO
+
+- create single JAR with shade plugin
+- create log file if it does not exist
+- make server URL configurable
+- verify command-line args
+- beautify code (incl. tests)
+
 ## Development Guide
 
 The daemon is build with [Maven](http://maven.apache.org/). If you
