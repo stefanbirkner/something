@@ -17,7 +17,7 @@ the daemon by
 
     java -cp "target/monitor-0.0.0-SNAPSHOT.jar:okhttp-3.9.1.jar:okio-1.13.0.jar" Monitor <path/to/log/file>
 
-The daemon writes its message to the specified log file. It writes the following events:
+The log file must already exist. The daemon writes its message to the specified log file. It writes the following events:
 
 - Monitor has started: `DEBUG Monitor started`
 - Server is healthy (it returns 200): `INFO Server is healthy`
