@@ -4,6 +4,7 @@ This application is a daemon that monitors a service at HTTP port 12345 on your 
 
 ## Usage
 
+You need to have JDK >= 8 installed.
 Build the daemon by running
 
     ./mvnw verify
