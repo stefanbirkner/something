@@ -3,10 +3,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static java.nio.file.StandardOpenOption.*;
+import static java.util.Collections.singleton;
+import static java.util.concurrent.Executors.newSingleThreadExecutor;
 
 public class Monitor {
+    private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     private final Path log;
 
     public static void main(String... args) throws Exception {
@@ -24,11 +31,24 @@ public class Monitor {
         this.log = log;
     }
 
-    private void start() throws IOException {
-        Files.write(
-            log,
-            Collections.singleton("DEBUG Monitor started"),
-            APPEND
-        );
+    private void start() {
+        log("DEBUG Monitor started");
+        executorService.scheduleWithFixedDelay(this::monitorServer, 0, 100, TimeUnit.MILLISECONDS);
+    }
+
+    public void stop() {
+        executorService.shutdown();
+    }
+
+    private void monitorServer() {
+        log("ERROR Failed to connect to server");
+    }
+
+    private void log(String message) {
+        try {
+            Files.write(log, singleton(message), APPEND);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
