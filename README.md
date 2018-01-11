@@ -15,9 +15,11 @@ Build the daemon by running
 This will create an executable JAR `target/monitor-0.0.0-SNAPSHOT.jar`. Now you can run
 the daemon by
 
-    `java -jar target/monitor-0.0.0-SNAPSHOT.jar
+    java -jar target/monitor-0.0.0-SNAPSHOT.jar <path/to/log/file>
 
-The daemon writes its message to a file `daemon.log` at your current directory.
+The daemon writes its message to the specified log file. It writes the following events:
+
+- Monitor has started
 
 ## Development Guide
 
